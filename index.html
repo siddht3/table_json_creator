@@ -2,126 +2,20 @@
 <META HTTP-EQUIV="refresh" CONTENT="1">
 
 <body>
-<style type="text/css">
-        body
-        {
-            font-family: Arial;
-            font-size: 10pt;
-        }
-        table
-        {
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-        }
-        table th
-        {
-            background-color: #F7F7F7;
-            color: #333;
-            font-weight: bold;
-        }
-        table th, table td
-        {
-            padding: 5px;
-            border-color: #ccc;
-        }
-    </style>
+<link type="text/css" href="./resource/style_1.css" rel="stylesheet">
  <div id="dvTable">
 <script>
 var _data;  //data json
 var i=0;    // iteration
 var st;     // string
-function loadJSON(file, callback) {
-
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', file, false); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);
- }
-
-
-function load()
-{
-   loadJSON("a.json", function(response)
-   {
-        //alert(response);
-         _data = JSON.parse(response); //eval('(' +response+')')
-     
-
-
-          });
-
-}
-load();
-
-function GenerateTable() 
-        {
-           var _a=0;
-            var __data= new Array();
-         //  _train.push(["serial","halt", "day", "fullname" ,"route" ,"lng","distance","scharr","lat","code","no","schdep","state"]);
-          __data.push(["status","downloaded_bytes", "_percent_str", "_speed_str" ,"elapsed" ,"total_bytes","tmpfilename","speed","_total_bytes_str","filename","eta","_eta_str"]);
-  
-            var _arr=[];
-           
-             _arr.push(_data.status);
-             _arr.push(_data.downloaded_bytes);
-             _arr.push(_data._percent_str);
-             _arr.push(_data._speed_str);
-              // _arr.push(_data[_a].lng);
-  _arr.push(_data.elapsed);
-  _arr.push(_data.total_bytes);
- // _arr.push(_data[_a].lat);
-  _arr.push("<marquee>"+_data.tmpfilename+"</marquee");
-  _arr.push(_data.speed);
-  _arr.push(_data._total_bytes_str);
-  _arr.push("<marquee>"+_data.filename+"</marquee>");
-   _arr.push(_data.eta);
-    _arr.push(_data._eta_str);
-
-            
-             
-           
-            __data.push(_arr);
-
-
-            
-
-        
-    document.write("<table> <th> File Status</th> </table");
-
-            //Create a HTML Table element.
-            var table = document.createElement("TABLE");
-            table.border = "1";
-
-            //Get the count of columns.
-            var columnCount =__data[0].length;
-
-            //Add the header row.
-            var row = table.insertRow(-1);
-            for (var i = 0; i < columnCount; i++) {
-                var headerCell = document.createElement("TH");
-                headerCell.innerHTML =__data[0][i];
-                row.appendChild(headerCell);
-            }
-
-            //Add the data rows.
-            for (var i = 1; i <__data.length; i++) {
-                row = table.insertRow(-1);
-                for (var j = 0; j < columnCount; j++) {
-                    var cell = row.insertCell(-1);
-                    cell.innerHTML =__data[i][j];
-                }
-            }
-
-            var dvTable = document.getElementById("dvTable");
-            dvTable.innerHTML = "";
-            dvTable.appendChild(table);
-        }
+         </script>
+          <script src="./resource/load_1.js"></script>
+          <script src="./resource/load_2.js"></script>
+         <script>
+         load();
+         </script>
+         <script src="./resource/load_3.js"></script>
+           <script>
         GenerateTable();
     </script>
 
